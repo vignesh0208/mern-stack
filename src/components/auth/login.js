@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import "../../scss/auth.scss"
 import Logo from "../../image/logo.png"
-import classnames from "classnames";
 import config from "../../config"
+import Input from "../input/input"
+import Button from "../button/button"
 
 class Login extends Component {
     constructor() {
@@ -15,15 +16,18 @@ class Login extends Component {
             errors: {}
         };
     }
-    onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
+
+    handleInputChange = ({ name, value }) => {
+        this.setState({[name]: value});
     };
+
     onSubmit = e => {
         e.preventDefault();
         const userData = {
             email: this.state.email,
             password: this.state.password
         };
+        console.log(userData)
         axios.post(config.serverUrl + "/api/users/login", userData)
         .then(res => {
             const { token } = res.data;
@@ -46,17 +50,12 @@ class Login extends Component {
                     <div className="register-form">
                         <h4>Login</h4>
                         <form className="mt-4" noValidate onSubmit={this.onSubmit}>
-                            <div className="input-field">
-                                <input onChange={this.onChange} value={this.state.email} className={classnames("", {invalid: errors.email || errors.emailnotfound})} id="email" type="email" placeholder="Work Email Address" />
-                                <span className="red-text">{errors.email}{errors.emailnotfound}</span>
-                            </div>
-                            <div className="input-field">
-                                <input onChange={this.onChange} value={this.state.password} className={classnames("", {invalid: errors.password || errors.passwordincorrect})} id="password" type="password" placeholder="Password" />
-                                <span className="red-text">{errors.password} {errors.passwordincorrect}</span>
-                            </div>
-                            <div className="button-submit">
-                                <button type="submit" className="w-100">Login</button>
-                            </div>
+                            <Input type="email" placeholder="Work Email Address" helperText={errors.email || errors.emailnotfound} name="email" className="input-field" onChange={this.handleInputChange} />
+
+                            <Input type="password" placeholder="Password" helperText={errors.password || errors.passwordincorrect} name="password" className="input-field" onChange={this.handleInputChange} />
+
+                            <Button type="submit" className="button-submit" buttonClassName="w-100" label="Login" />
+
                         </form>
                         <p className="grey-text">Create new account <Link to="/register">Register</Link></p>
                     </div>
