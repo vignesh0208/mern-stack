@@ -4,10 +4,9 @@ const passport = require("passport");
 const cors = require('cors')
 
 const db = require('./db')
-const todoRouter = require('./routes/todo-router')
-const removeTodos = require('./routes/remove-todo-router')
 const users = require("./routes/auth-router")
-const admin = require('./routes/admin-auth-router.js')
+const admin = require('./routes/admin-auth-router')
+const sendMail = require('./routes/send-mail')
 
 const config = require("./config/config");
 
@@ -22,9 +21,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.use(passport.initialize());
 require("./config/passport")(passport)
 
-app.use('/', todoRouter)
-app.use('/remove', removeTodos)
 app.use("/api/users", users)
 app.use("/api/admin", admin)
+app.use("/sendmail", sendMail)
 
 app.listen(config.port, () => console.log(`Server running on port ` + config.port))

@@ -27,12 +27,11 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         };
-        console.log(userData)
         axios.post(config.serverUrl + "/api/users/login", userData)
         .then(res => {
             const { token } = res.data;
             localStorage.setItem("jwtToken", token);
-            this.props.history.push("/");
+            this.props.history.push("/main/dashboard")
         })
         .catch(err => 
             this.setState({

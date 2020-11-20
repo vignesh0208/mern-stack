@@ -1,0 +1,85 @@
+.dark-mode {
+    background: #393C45 !important;
+    .side-nav, .user-profile {
+        background: #2E3035 !important;
+    }
+    .active, .active_item, .select-type-card {
+        color: #ffffff !important;
+    }
+    .title, .card-title {
+        p {
+            color: #ffffff !important;
+        }
+    }
+    thead {
+        background: #26282D !important;
+        border: 1px solid #525252 !important;
+        th {
+            color: #ffffff !important;
+        }
+    }
+    tbody {
+        background: #2E3035 !important;
+        tr {
+            border: 1px solid #3F4247 !important;
+            td {
+                color: #ffffff !important;
+                svg {
+                    ellipse {
+                        fill: #ffffff !important;
+                    }
+                }
+            }
+        }
+    }
+    .user-profile {
+        svg {
+            path {
+                stroke: #FFFFFF !important;
+            }
+        }
+    }
+    .main-card, .select-type, .payment-schedule-card {
+        // background: #383838 !important;
+        background: #2E3035 !important;
+        .select-type-card {
+            background: rgba(0, 0, 0, 0.09);
+            .select-type-img {
+                background: rgba(0, 0, 0, 0.24);
+                svg {
+                    circle, rect, path {
+                        fill: transparent !important;
+                    }
+                }
+            }
+        }
+    }
+    .top-card {
+        .active {
+            background: #CF6679 !important;
+        }
+    }
+    .card-title {
+        border-bottom: 1px solid #4e4e4e !important;
+    }
+    .fill-details {
+        .label {
+            color: #ffffff !important;
+        }
+        .input-from {
+            background: #a2a2a2 !important;
+        }
+    }
+    .main-card {
+        box-shadow : 2px 6px 5px rgba(0, 0, 0, 0.1);
+    }
+    .image-responsive {
+        svg {
+            path {
+                &:last-child {
+                    fill: #dcdcdc !important
+                }
+            }
+        }
+    }
+}

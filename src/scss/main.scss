@@ -1,0 +1,103 @@
+.main-content {
+    background: #EEF0F4;
+    .image-responsive {
+        padding-bottom: 40px;
+    }
+}
+
+.side-nav {
+    flex: 0 0 200px;
+    padding: 26px 0px 18px 32px;
+    background: #FFFFFF;
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            padding-bottom: 45px;
+            a {
+                color: #8A8A8A;
+                font-size: 12px;
+                line-height: 14px;
+                .image-svg {
+                    padding-right: 18px;
+                }
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+            .active {
+                color: #333333;
+                border-right: 2px solid #FF7643;
+                svg {
+                    line, path, rect {
+                        stroke: #FF7643;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.display-container {
+    flex: 1 1 auto;
+}
+
+.user-profile {
+    flex: 0 0 54px;
+    background: #FFFFFF;
+    padding: 26px 9px;
+    img {
+        border-radius: 50%;
+    }
+    .user-notification {
+        .notification {
+            padding: 36px 10px 0px; 
+            position: relative;
+            .dot-icon {
+                position: absolute;
+                right: 12px;
+            }
+        }
+    }
+} 
+
+.top-card {
+    width: 100%;
+    .main-card {
+        width: 25%;
+        margin-right: 1%;
+        border-radius: 8px;
+        &:last-child {
+            margin-right: 0;
+        }
+        .card-text {
+            margin-left: 13px;
+            .card-main-title {
+                font-weight: 500;
+                font-size: 10px;
+                line-height: 12px;
+                padding-bottom: 5px;
+            }
+            .card-sub-title {
+                font-weight: bold;
+                font-size: 12px;
+                line-height: 14px;
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+
+.dark-light-mode {
+    cursor: pointer;
+}
+
+.logout {
+    text-align: center;
+    margin-top: 32px;
+    svg {
+        width: 25px;
+        height: 20px;
+    }
+}

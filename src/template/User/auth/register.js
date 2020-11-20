@@ -33,7 +33,7 @@ class Register extends Component {
         };
         console.log(newUser);
         axios.post(config.serverUrl + "/api/users/register", newUser)
-        .then(res => this.props.history.push("/login"))
+        .then(res => this.props.history.push("/"))
         .catch(err => 
             this.setState({
                 errors: err.response.data
@@ -61,7 +61,7 @@ class Register extends Component {
                             <Button type="submit" className="button-submit" buttonClassName="w-100" label="Create Account" />
 
                         </form>
-                        <p className="grey-text">Already have an account? <Link to="/login">Log in</Link></p>
+                        <p className="grey-text">Already have an account? <Link to="/">Log in</Link></p>
                     </div>
                 </div>
             </section>

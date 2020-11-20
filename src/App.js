@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.scss"
 
@@ -7,7 +7,7 @@ import AdminHome from "./template/Admin/home"
 import AdminRegister from "./template/Admin/auth/register";
 import AdminLogin from "./template/Admin/auth/login";
 
-import Home from "./template/User/home"
+import MainContent from "./template/User/main-content"
 import Register from "./template/User/auth/register";
 import Login from "./template/User/auth/login";
 
@@ -17,12 +17,14 @@ class App extends Component {
         return (
             <Router>
                 <div className="App">
-                    <Route exact path="/admin" component={AdminHome} />
-                    <Route exact path="/admin/register" component={AdminRegister} />
-                    <Route exact path="/admin/login" component={AdminLogin} />
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/login" component={Login} />
+                    <Switch>
+                        <Route exact path="/" component={Login} />
+                        <Route path="/admin" component={AdminHome} />
+                        <Route path="/admin/register" component={AdminRegister} />
+                        <Route path="/admin/login" component={AdminLogin} />
+                        <Route path="/main" component={MainContent} />
+                        <Route path="/register" component={Register} />
+                    </Switch>
                 </div>
             </Router>
         );
