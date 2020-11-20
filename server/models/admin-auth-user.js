@@ -24,4 +24,4 @@ const AuthUser = new Schema({
     }
 });
 
-module.exports = mongoose.model("users", AuthUser);
+module.exports = mongoose.model("admin", AuthUser);

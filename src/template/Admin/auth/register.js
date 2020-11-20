@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import "../../scss/auth.scss"
-import Logo from "../../image/logo.png"
-import config from "../../config"
-import Input from "../input/input"
-import Button from "../button/button"
+import "../../../scss/auth.scss"
+import Logo from "../../../image/logo.png"
+import config from "../../../config"
+import Input from "../../../components/input/input"
+import Button from "../../../components/button/button"
 
-class Register extends Component {
+class AdminRegister extends Component {
     constructor() {
         super();
         this.state = {
@@ -32,8 +32,8 @@ class Register extends Component {
             password2: this.state.password2
         };
         console.log(newUser);
-        axios.post(config.serverUrl + "/api/users/register", newUser)
-        .then(res => this.props.history.push("/login"))
+        axios.post(config.serverUrl + "/api/admin/register", newUser)
+        .then(res => this.props.history.push("/admin/login"))
         .catch(err => 
             this.setState({
                 errors: err.response.data
@@ -46,7 +46,7 @@ class Register extends Component {
             <section className="auth register">
                 <div className="auth-card">
                     <img src={ Logo } alt="logo" className="auth-logo" />
-                    <div className="auth-title">Artificial Intelligence Powered Hiring</div>
+                    <div className="auth-title">Admin</div>
                     <div className="register-form">
                         <h4>Register</h4>
                         <form className="mt-4" noValidate onSubmit={this.onSubmit}>
@@ -61,11 +61,11 @@ class Register extends Component {
                             <Button type="submit" className="button-submit" buttonClassName="w-100" label="Create Account" />
 
                         </form>
-                        <p className="grey-text">Already have an account? <Link to="/login">Log in</Link></p>
+                        <p className="grey-text">Already have an account? <Link to="/admin/login">Log in</Link></p>
                     </div>
                 </div>
             </section>
         );
     }
 }
-export default Register;
+export default AdminRegister;
