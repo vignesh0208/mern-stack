@@ -183,4 +183,13 @@ AdminLoginUser = (req, res) => {
     });
 }
 
-module.exports = {RegisterUser, LoginUser, AdminRegisterUser, AdminLoginUser}
+UserDetail = (req, res) => {
+    AuthUser.find({ }).then(userDetail => {
+        res.json({
+            data: userDetail,
+            success: true
+        });
+    })
+}
+
+module.exports = {RegisterUser, LoginUser, AdminRegisterUser, AdminLoginUser, UserDetail}

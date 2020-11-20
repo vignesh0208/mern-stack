@@ -28,6 +28,7 @@ class MainContent extends React.Component {
         }
         this.state = {
             visible: storedClicks,
+            adminVisible: false
         }
     }
 
@@ -38,20 +39,33 @@ class MainContent extends React.Component {
     }
 
     userLogout() {
-        localStorage.setItem("jwtToken", "");
-        this.props.history.push("/");
+        if(this.state.adminVisible) {
+            localStorage.setItem("adminjwtToken", "");
+            this.props.history.push("/admin/login");
+        }
+        else {
+            localStorage.setItem("jwtToken", "");
+            this.props.history.push("/");
+        }
     }
 
     componentDidMount() {
         var clickState = sessionStorage.getItem('clicks');
         this.setState({visible: clickState});
-        if (localStorage.getItem("jwtToken") === "") {
+        if (localStorage.getItem("adminjwtToken") !== "") {
+            this.setState({adminVisible: true});
+        }
+        else if (localStorage.getItem("adminjwtToken") === "") {
+            this.props.history.push("/admin/login");
+        }
+        else if (localStorage.getItem("jwtToken") === "") {
             this.props.history.push("/");
         }
+
     }
 
     render() {
-        const { visible } = this.state;
+        const { visible, adminVisible } = this.state;
         let DarkLightIcon;
         if(visible) {
             DarkLightIcon = <LightModeIcon />
@@ -70,7 +84,7 @@ class MainContent extends React.Component {
                     <li>
                         <NavLink exact activeClassName="active" className="d-flex" to="/main/dashboard">
                             <div className="image-svg"><DashboardIcon /></div>
-                            <div className="my-auto">Dashboard</div>
+                            <div className="my-auto">Dashboard {adminVisible} </div>
                         </NavLink>
                     </li>
                     <li>
@@ -97,6 +111,14 @@ class MainContent extends React.Component {
                             <div className="my-auto">Support</div>
                         </NavLink>
                     </li>
+                    { adminVisible ? 
+                        <li>
+                            <NavLink activeClassName="active" className="d-flex" to="/main/manage-account">
+                                <div className="image-svg"><SupportIcon /></div>
+                                <div className="my-auto">Manage Account</div>
+                            </NavLink>
+                        </li> : ''  
+                    }
                 </ul>
             </div>
             <div className="display-container">

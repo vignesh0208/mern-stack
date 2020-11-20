@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import "../../../scss/auth.scss"
-import Logo from "../../../image/logo.png"
-import config from "../../../config"
-import Input from "../../../components/input/input"
-import Button from "../../../components/button/button"
+import "../../scss/auth.scss"
+import Logo from "../../image/logo.png"
+import config from "../../config"
+import Input from "../../components/input/input"
+import Button from "../../components/button/button"
 
 class Register extends Component {
     constructor() {
