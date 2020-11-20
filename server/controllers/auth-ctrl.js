@@ -85,28 +85,35 @@ LoginUser = (req, res) => {
             return res.status(404).json({ emailnotfound: "Email not found" });
         }
 
-        bcrypt.compare(password, user.password).then(isMatch => {
-            if (isMatch) {
-                const payload = {
-                    id: user.id,
-                    name: user.name
-                };
-                jwt.sign(
-                    payload,
-                    config.secretOrKey,
-                    (err, token) => {
-                        res.json({
-                            success: true,
-                            token: token
-                        });
-                    }
-                );
-            } else {
-                return res
-                .status(400)
-                .json({ passwordincorrect: "Password incorrect" });
-            }
-        });
+        if (user.active) {
+            bcrypt.compare(password, user.password).then(isMatch => {
+                if (isMatch) {
+                    const payload = {
+                        id: user.id,
+                        name: user.name
+                    };
+                    jwt.sign(
+                        payload,
+                        config.secretOrKey,
+                        (err, token) => {
+                            res.json({
+                                success: true,
+                                token: token
+                            });
+                        }
+                    );
+                } else {
+                    return res
+                    .status(400)
+                    .json({ passwordincorrect: "Password incorrect" });
+                }
+            });
+        }
+        else {
+            res.json({
+                success: false,
+            });
+        }
     });
 }
 
@@ -187,9 +194,17 @@ UserDetail = (req, res) => {
     AuthUser.find({ }).then(userDetail => {
         res.json({
             data: userDetail,
-            success: true
         });
     })
 }
 
-module.exports = {RegisterUser, LoginUser, AdminRegisterUser, AdminLoginUser, UserDetail}
+UserRole = (req, res) => {
+    AuthUser.updateOne({ _id: req.body._id }, { $set: {
+        "active": false
+    }}).exec((err) => {
+        if(err) return err;
+        return res.json({ success: 'okay' })
+    })
+}
+
+module.exports = {RegisterUser, LoginUser, AdminRegisterUser, AdminLoginUser, UserDetail, UserRole}

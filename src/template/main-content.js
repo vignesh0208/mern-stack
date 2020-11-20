@@ -14,6 +14,8 @@ import { ReactComponent as LightModeIcon } from '../image/light-icon.svg';
 
 import { Route, NavLink } from 'react-router-dom';
 import Dashboard from './dashboard/dashboard';
+import ManageAccount from './manage-account/manage-account'
+
 import '../scss/main.scss'
 import '../scss/dark-mode.scss'
 
@@ -54,9 +56,6 @@ class MainContent extends React.Component {
         this.setState({visible: clickState});
         if (localStorage.getItem("adminjwtToken") !== "") {
             this.setState({adminVisible: true});
-        }
-        else if (localStorage.getItem("adminjwtToken") === "") {
-            this.props.history.push("/admin/login");
         }
         else if (localStorage.getItem("jwtToken") === "") {
             this.props.history.push("/");
@@ -123,6 +122,7 @@ class MainContent extends React.Component {
             </div>
             <div className="display-container">
                 <Route exact path="/main/dashboard" component={Dashboard} />
+                <Route exact path="/main/manage-account" component={ManageAccount} />
             </div>
             <div className="user-profile">
                 <div className="d-flex flex-column justify-content-between h-100">

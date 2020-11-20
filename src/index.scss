@@ -60,3 +60,62 @@ input[type=number]::-webkit-outer-spin-button {
 .m-t-32 {
     margin-top: 32px;
 }
+
+
+// Table
+
+.transactional-dashboard-content, .manage-account {
+    .transactional-dashboard-table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-radius: 14px;
+        border-style: hidden;
+        width: 100%;
+        box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.08);
+        thead {
+            background: #F4F7FD;
+            border: 1px solid #E5EAF3;
+            th {
+                text-align: center;
+                padding: 21px 15px;
+                font-weight: 500;
+                font-size: 10px;
+                line-height: 12px;
+                text-transform: uppercase;
+                color: #333333;
+                &:first-child {
+                    text-align: left;
+                    padding-left: 35px;
+                }
+            }
+        }
+        tbody {
+            background: #FFFFFF;
+            tr {
+                border-bottom: 1px solid #E5EAF3;
+                &:last-child {
+                    border-bottom: 0px;
+                }
+            }
+            td {
+                font-size: 12px;
+                line-height: 14px;
+                color: #333333;
+                padding: 21px 15px;
+                text-align: center;
+                &:first-child {
+                    text-align: left;
+                    padding-left: 35px;
+                }
+                &:last-child {
+                    cursor: pointer;
+                    padding: 0px;
+                    padding-right: 35px;
+                }
+                img {
+                    padding: 0px 20px;
+                }
+            }
+        }
+    }
+}

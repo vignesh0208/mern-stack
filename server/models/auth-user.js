@@ -16,7 +16,7 @@ const AuthUser = new Schema({
     },
     active: {
         type: Boolean,
-        value: true
+        default: true
     },
     date: {
         type: Date,
