@@ -1,21 +1,21 @@
 import React from 'react';
-import { ReactComponent as Logo } from "../../image/logo.svg"
-import { ReactComponent as DashboardIcon } from '../../image/dashboard.svg';
-import { ReactComponent as PaymentScheduleIcon } from '../../image/payment-schedule.svg';
-import { ReactComponent as AddanPayeeIcon } from '../../image/add-an-payee.svg';
-import { ReactComponent as BillingIcon } from '../../image/billing.svg';
-import { ReactComponent as SupportIcon } from '../../image/support.svg';
-import { ReactComponent as LogOutIcon } from '../../image/logout.svg';
-import UserImage from '../../image/user.jpg';
-import DotIcon from '../../image/dot.svg'
-import { ReactComponent as NotificationIcon } from '../../image/notification.svg';
-import { ReactComponent as DarkModeIcon } from '../../image/dark-icon.svg';
-import { ReactComponent as LightModeIcon } from '../../image/light-icon.svg';
+import { ReactComponent as Logo } from "../image/logo.svg"
+import { ReactComponent as DashboardIcon } from '../image/dashboard.svg';
+import { ReactComponent as PaymentScheduleIcon } from '../image/payment-schedule.svg';
+import { ReactComponent as AddanPayeeIcon } from '../image/add-an-payee.svg';
+import { ReactComponent as BillingIcon } from '../image/billing.svg';
+import { ReactComponent as SupportIcon } from '../image/support.svg';
+import { ReactComponent as LogOutIcon } from '../image/logout.svg';
+import UserImage from '../image/user.jpg';
+import DotIcon from '../image/dot.svg'
+import { ReactComponent as NotificationIcon } from '../image/notification.svg';
+import { ReactComponent as DarkModeIcon } from '../image/dark-icon.svg';
+import { ReactComponent as LightModeIcon } from '../image/light-icon.svg';
 
 import { Route, NavLink } from 'react-router-dom';
 import Dashboard from './dashboard/dashboard';
-import '../../scss/main.scss'
-import '../../scss/dark-mode.scss'
+import '../scss/main.scss'
+import '../scss/dark-mode.scss'
 
 class MainContent extends React.Component {
     constructor(props) {

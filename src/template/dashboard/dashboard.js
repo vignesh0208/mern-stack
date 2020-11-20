@@ -1,17 +1,33 @@
 import React from 'react';
 import axios from 'axios';
-import { useToasts } from 'react-toast-notifications'
+import { toast } from 'react-toastify';  
+import 'react-toastify/dist/ReactToastify.css'; 
 
-import config from "../../../config"
-import RentIcon from '../../../image/rent.svg';
-import InsuranceIcon from '../../../image/insurance.svg';
-import EducationalFeeIcon from '../../../image/educational-fee.svg';
-import PayrollIcon from '../../../image/payroll.svg';
-import '../../../scss/dashboard.scss';
+import config from "../../config"
+import RentIcon from '../../image/rent.svg';
+import InsuranceIcon from '../../image/insurance.svg';
+import EducationalFeeIcon from '../../image/educational-fee.svg';
+import PayrollIcon from '../../image/payroll.svg';
+import '../../scss/dashboard.scss';
 
+toast.configure()
 
 const PaymentHistory = (props) => {
     const PaymentHistory = props.getData;
+    const sendMail = (val) => {
+        axios.post(config.serverUrl + "/sendmail", val)
+        .then(res => {
+            toast.success('Mail send successful to this mail id: ' + val.mailID , {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        })
+    }
     return (
         <table className="transactional-dashboard-table">
             <thead>
@@ -36,7 +52,7 @@ const PaymentHistory = (props) => {
                     <td>{ prop.status }</td>
                     <td>{ prop.paymentDueDate }</td>
                     <td>{ prop.totalAmount }</td>
-                    <td>Send mail</td>
+                    <td><span onClick={ () => sendMail(prop) }>Send mail</span></td>
                 </tr>
             )}
             </tbody>
@@ -46,6 +62,20 @@ const PaymentHistory = (props) => {
 
 const ScheduledPayments = (props) => {
     const ScheduledPayments = props.getData;
+    const sendMail = (val) => {
+        axios.post(config.serverUrl + "/sendmail", val)
+        .then(res => {
+            toast.success('Mail send successful to this mail id: ' + val.mailID , {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        })
+    }
     return (
         <table className="transactional-dashboard-table">
             <thead>
@@ -70,7 +100,7 @@ const ScheduledPayments = (props) => {
                     <td>{ prop.status }</td>
                     <td>{ prop.paymentDueDate }</td>
                     <td>{ prop.totalAmount }</td>
-                    <td>Send mail</td>
+                    <td><span onClick={ () => sendMail(prop) }>Send mail</span></td>
                 </tr>
             )}
             </tbody>
@@ -81,6 +111,20 @@ const ScheduledPayments = (props) => {
 
 const UpcomingPayments = (props) => {
     const UpcomingPayments = props.getData;
+    const sendMail = (val) => {
+        axios.post(config.serverUrl + "/sendmail", val)
+        .then(res => {
+            toast.success('Mail send successful to this mail id: ' + val.mailID , {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        })
+    }
     return (
         <table className="transactional-dashboard-table">
             <thead>
@@ -103,7 +147,7 @@ const UpcomingPayments = (props) => {
                     <td>{ prop.status }</td>
                     <td>{ prop.paymentDueDate }</td>
                     <td>{ prop.totalAmount }</td>
-                    <td>Send mail</td>
+                    <td><span onClick={ () => sendMail(prop) }>Send mail</span></td>
                 </tr>
             )}
             </tbody>
@@ -113,13 +157,18 @@ const UpcomingPayments = (props) => {
 
 const FailedPayments = (props) => {
     const FailedPayments = props.getData;
-    const { addToast } = useToasts()
     const sendMail = (val) => {
-        console.log(val)
         axios.post(config.serverUrl + "/sendmail", val)
         .then(res => {
-            console.log(res);
-            addToast('Saved Successfully', { appearance: 'success' })
+            toast.success('Mail send successful to this mail id: ' + val.mailID , {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
         })
     }
     return (

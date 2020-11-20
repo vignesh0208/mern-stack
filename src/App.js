@@ -7,7 +7,7 @@ import AdminHome from "./template/Admin/home"
 import AdminRegister from "./template/Admin/auth/register";
 import AdminLogin from "./template/Admin/auth/login";
 
-import MainContent from "./template/User/main-content"
+import MainContent from "./template/main-content"
 import Register from "./template/User/auth/register";
 import Login from "./template/User/auth/login";
 
