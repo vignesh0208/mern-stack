@@ -44,10 +44,12 @@ class MainContent extends React.Component {
         if(this.state.adminVisible) {
             localStorage.setItem("adminjwtToken", "");
             this.props.history.push("/admin/login");
+            sessionStorage.setItem('clicks', '')
         }
         else {
             localStorage.setItem("jwtToken", "");
             this.props.history.push("/");
+            sessionStorage.setItem('clicks', '')
         }
     }
 

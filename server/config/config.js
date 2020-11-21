@@ -3,7 +3,9 @@ require('dotenv').config()
 const config = {
     env: process.env.APP_ENV,
     port: process.env.WEB_PORT || 5000,
-    secretKey: process.env.SESSION_SECRET
+    secretKey: process.env.SESSION_SECRET,
+    emailId: process.env.Email_Id,
+    pwd: process.env.password
 }
 
 // if(config.env == 'development') {

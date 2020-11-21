@@ -25,13 +25,13 @@ RegisterUser = (req, res) => {
             let mailTransporter = nodemailer.createTransport({ 
                 service: 'Gmail', 
                 auth: { 
-                    user: 'v19ne5h1994@gmail.com', 
-                    pass: 'vignesh0208'
+                    user: config.emailId, 
+                    pass: config.pwd
                 } 
             }); 
               
             let mailDetails = { 
-                from: 'v19ne5h1994@gmail.com', 
+                from: config.emailId, 
                 to: req.body.email, 
                 subject: 'Total jobs registration successfully', 
                 html: `
