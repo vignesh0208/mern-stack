@@ -1,10 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import Switch from "react-switch";
+import { toast } from 'react-toastify';  
+import 'react-toastify/dist/ReactToastify.css'; 
 
 import config from '../../config'
 import 'react-toastify/dist/ReactToastify.css'; 
 import '../../scss/manage-account.scss';
+
+toast.configure()
 
 class ManageAccount extends React.Component {
 
@@ -16,9 +20,17 @@ class ManageAccount extends React.Component {
     userPermissions(info) {
         axios.post(config.serverUrl + "/api/admin/user-role", info)
         .then(res => {
-            console.log("working")
+            console.log(res.data.success);
+            toast.success('This account is ' + res.data.success + ' sucessfully.', {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         })
-        console.log(info);
     }
 
     componentDidMount() {

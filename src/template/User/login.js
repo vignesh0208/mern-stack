@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { toast } from 'react-toastify';  
+import 'react-toastify/dist/ReactToastify.css'; 
+
 import "../../scss/auth.scss"
 import Logo from "../../image/logo.png"
 import config from "../../config"
 import Input from "../../components/input/input"
 import Button from "../../components/button/button"
+
+toast.configure()
 
 class Login extends Component {
     constructor() {
@@ -29,9 +34,22 @@ class Login extends Component {
         };
         axios.post(config.serverUrl + "/api/users/login", userData)
         .then(res => {
-            const { token } = res.data;
-            localStorage.setItem("jwtToken", token);
-            this.props.history.push("/main/dashboard")
+            if(res.data.data.active) {
+                const { token } = res.data;
+                localStorage.setItem("jwtToken", token);
+                this.props.history.push("/main/dashboard")
+            }
+            else {
+                toast.info( 'Hi ' + res.data.data.name + ', Your account temporary deactivate.', {
+                    position: "bottom-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
         })
         .catch(err => 
             this.setState({

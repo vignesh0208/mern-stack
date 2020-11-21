@@ -85,35 +85,29 @@ LoginUser = (req, res) => {
             return res.status(404).json({ emailnotfound: "Email not found" });
         }
 
-        if (user.active) {
-            bcrypt.compare(password, user.password).then(isMatch => {
-                if (isMatch) {
-                    const payload = {
-                        id: user.id,
-                        name: user.name
-                    };
-                    jwt.sign(
-                        payload,
-                        config.secretOrKey,
-                        (err, token) => {
-                            res.json({
-                                success: true,
-                                token: token
-                            });
-                        }
-                    );
-                } else {
-                    return res
-                    .status(400)
-                    .json({ passwordincorrect: "Password incorrect" });
-                }
-            });
-        }
-        else {
-            res.json({
-                success: false,
-            });
-        }
+        bcrypt.compare(password, user.password).then(isMatch => {
+            if (isMatch) {
+                const payload = {
+                    id: user.id,
+                    name: user.name
+                };
+                jwt.sign(
+                    payload,
+                    config.secretOrKey,
+                    (err) => {
+                        res.json({
+                            success: true,
+                            data: user
+                        });
+                    }
+                );
+            } else {
+                return res
+                .status(400)
+                .json({ passwordincorrect: "Password incorrect" });
+            }
+        });
+        
     });
 }
 
@@ -199,12 +193,22 @@ UserDetail = (req, res) => {
 }
 
 UserRole = (req, res) => {
-    AuthUser.updateOne({ _id: req.body._id }, { $set: {
-        "active": false
-    }}).exec((err) => {
-        if(err) return err;
-        return res.json({ success: 'okay' })
-    })
+    if(req.body.active) {
+        AuthUser.updateOne({ _id: req.body._id }, { $set: {
+            "active": false
+        }}).exec((err) => {
+            if(err) return err;
+            return res.json({ success: 'Deactive' })
+        })
+    }
+    else {
+        AuthUser.updateOne({ _id: req.body._id }, { $set: {
+            "active": true
+        }}).exec((err) => {
+            if(err) return err;
+            return res.json({ success: 'Active' })
+        })
+    }
 }
 
 module.exports = {RegisterUser, LoginUser, AdminRegisterUser, AdminLoginUser, UserDetail, UserRole}
