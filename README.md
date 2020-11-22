@@ -39,6 +39,6 @@ npm start
 Open new terminal
 
 ```
-cd server && npm install
+cd server && yarn install
 nodemon server.js
 ```
