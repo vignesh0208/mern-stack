@@ -31,7 +31,7 @@ password= Enter your password
 ### Install dependencies for client
 
 ```
-npm install
+Yarn install
 npm start
 ```
 
