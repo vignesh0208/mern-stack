@@ -40,6 +40,8 @@ password= Enter your password
 
 ## Quick Start
 
+Before that install [yarn](https://yarnpkg.com/getting-started/install) in your system.
+
 ### Install dependencies for client
 
 ```
