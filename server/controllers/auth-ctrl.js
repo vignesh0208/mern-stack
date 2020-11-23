@@ -198,6 +198,33 @@ UserRole = (req, res) => {
             "active": false
         }}).exec((err) => {
             if(err) return err;
+            let mailTransporter = nodemailer.createTransport({ 
+                service: 'Gmail', 
+                auth: { 
+                    user: config.emailId, 
+                    pass: config.pwd
+                } 
+            }); 
+              
+            let mailDetails = { 
+                from: config.emailId, 
+                to: req.body.email, 
+                subject: 'Total jobs - Your account deactive', 
+                html: `
+                    <p>Hi ` + req.body.name + `,</p>
+                    <p>Your account temporarily deactive <b>` + req.body.name + `</b>. It will active soon.</p>
+                    <p>Thanks,</p>
+                    <p>Totaljobs team</p>
+                    `
+            }; 
+              
+            mailTransporter.sendMail(mailDetails, function(err, data) { 
+                if(err) { 
+                    console.log('Error Occurs', err); 
+                } else { 
+                    console.log('Email sent successfully'); 
+                } 
+            })
             return res.json({ success: 'Deactive' })
         })
     }
@@ -206,6 +233,33 @@ UserRole = (req, res) => {
             "active": true
         }}).exec((err) => {
             if(err) return err;
+            let mailTransporter = nodemailer.createTransport({ 
+                service: 'Gmail', 
+                auth: { 
+                    user: config.emailId, 
+                    pass: config.pwd
+                } 
+            }); 
+              
+            let mailDetails = { 
+                from: config.emailId, 
+                to: req.body.email, 
+                subject: 'Total jobs - Your account active', 
+                html: `
+                    <p>Hi ` + req.body.name + `,</p>
+                    <p>Your account active sucessfully <b>` + req.body.name + `</b>.</p>
+                    <p>Thanks,</p>
+                    <p>Totaljobs team</p>
+                    `
+            }; 
+              
+            mailTransporter.sendMail(mailDetails, function(err, data) { 
+                if(err) { 
+                    console.log('Error Occurs', err); 
+                } else { 
+                    console.log('Email sent successfully'); 
+                } 
+            })
             return res.json({ success: 'Active' })
         })
     }
