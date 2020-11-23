@@ -8,7 +8,19 @@ Add your own MONGOURI in src/config.js
 
 ```
 const config = {
-    serverUrl: "Server URL"
+    serverUrl: "Server URL",
+    displayData: [
+        { 
+            transactionID: Any Name,
+            mailID: Any Mail Id,
+            paymentID: Payment ID,
+            dueAmount: Due Amount,
+            transactionDate: Transaction Date,
+            status: Status,
+            paymentDueDate: Payment Due Date,
+            totalAmount: Total Amount
+        }
+    ]
 }
 ```
 
